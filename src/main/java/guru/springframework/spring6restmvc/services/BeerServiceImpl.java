@@ -15,7 +15,7 @@ import java.util.*;
 @Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
-    private Map<UUID, Beer> beerMap;
+    private final Map<UUID, Beer> beerMap;
 
     public BeerServiceImpl() {
         this.beerMap = new HashMap<>();
@@ -23,7 +23,7 @@ public class BeerServiceImpl implements BeerService {
         Beer beer1 = Beer.builder()
                 .id(UUID.randomUUID())
                 .version(1)
-                .beerName("Galaxy Cat")
+                .name("Galaxy Cat")
                 .beerStyle(BeerStyle.PALE_ALE)
                 .upc("12356")
                 .price(new BigDecimal("12.99"))
@@ -35,7 +35,7 @@ public class BeerServiceImpl implements BeerService {
         Beer beer2 = Beer.builder()
                 .id(UUID.randomUUID())
                 .version(1)
-                .beerName("Crank")
+                .name("Crank")
                 .beerStyle(BeerStyle.PALE_ALE)
                 .upc("12356222")
                 .price(new BigDecimal("11.99"))
@@ -47,7 +47,7 @@ public class BeerServiceImpl implements BeerService {
         Beer beer3 = Beer.builder()
                 .id(UUID.randomUUID())
                 .version(1)
-                .beerName("Sunshine City")
+                .name("Sunshine City")
                 .beerStyle(BeerStyle.IPA)
                 .upc("12356")
                 .price(new BigDecimal("13.99"))

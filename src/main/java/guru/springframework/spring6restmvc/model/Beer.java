@@ -15,11 +15,15 @@ import java.util.UUID;
 public class Beer {
     private UUID id;
     private Integer version;
-    private String beerName;
+    private String name;
     private BeerStyle beerStyle;
     private String upc;
     private Integer quantityOnHand;
     private BigDecimal price;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
+
+    public Integer getVersion() {   // overrides lombok generated code for "version" property getter
+        return 765;
+    }
 }
