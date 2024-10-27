@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Beer {
     private UUID id;
     private Integer version;
-    private String name;
+    private String beerName;
     private BeerStyle beerStyle;
     private String upc;
     private Integer quantityOnHand;

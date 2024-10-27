@@ -17,10 +17,25 @@ import java.util.UUID;
  */
 @Slf4j
 @RequiredArgsConstructor
-@RestController     // this tells spring to return a proper RESTful response body, it's also going to return JSON as body
+@RestController     // this annotation applies both @Controller and @ResponseBody annotations
+                    // @ResponseBody has the return serialized to the response body through an HttpMessageWriter (in this case supplied by Jackson)
 @RequestMapping("/api/v1/beer")
 public class BeerController {
     private final BeerService beerService;
+
+    @PatchMapping("{beerId}")   // rarely used, also the implementation is pretty verbose especially if you have many properties in the DTO
+    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody Beer beer) {
+        beerService.patchBeerById(beerId, beer);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("{beerId}")
+    public ResponseEntity deleteById(@PathVariable("beerId") UUID beerId) {
+        beerService.deleteById(beerId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 
     @PutMapping("{beerId}")
     public ResponseEntity updateById(@PathVariable("beerId") UUID beerId, @RequestBody Beer beer) {
