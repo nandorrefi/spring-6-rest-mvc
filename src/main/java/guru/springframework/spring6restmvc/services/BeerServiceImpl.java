@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by jt, Spring Framework Guru.
  */
-@Slf4j
+@Slf4j  // lombok injects an SLF4J logger into this class
 @Service
 public class BeerServiceImpl implements BeerService {
     private final Map<UUID, Beer> beerMap;
