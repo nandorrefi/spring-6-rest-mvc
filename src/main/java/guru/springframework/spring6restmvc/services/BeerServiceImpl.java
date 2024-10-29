@@ -102,7 +102,6 @@ public class BeerServiceImpl implements BeerService {
         existing.setBeerName(beer.getBeerName());
         existing.setPrice(beer.getPrice());
         existing.setUpc(beer.getUpc());
-        existing.setVersion(beer.getVersion());
         existing.setQuantityOnHand(beer.getQuantityOnHand());
         existing.setUpdateDate(LocalDateTime.now());
     }
@@ -118,10 +117,6 @@ public class BeerServiceImpl implements BeerService {
 
         if(StringUtils.hasText(beer.getBeerName())) {
             existing.setBeerName(beer.getBeerName());
-        }
-
-        if(beer.getVersion() != null) {
-            existing.setVersion(beer.getVersion());
         }
 
         if (beer.getBeerStyle() != null) {

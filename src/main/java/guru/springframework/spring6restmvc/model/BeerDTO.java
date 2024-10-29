@@ -10,8 +10,8 @@ import java.util.UUID;
 /**
  * Created by jt, Spring Framework Guru.
  */
-@Builder
 @Data
+@Builder
 public class BeerDTO {
     private UUID id;
     private Integer version;
@@ -22,8 +22,4 @@ public class BeerDTO {
     private BigDecimal price;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
-
-    public Integer getVersion() {   // overrides lombok generated code for "version" property getter
-        return 765;
-    }
 }
