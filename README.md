@@ -17,3 +17,33 @@ Exact quote from the 3.3.5 [Spring documentation](https://docs.spring.io/spring-
 ## Jayway JsonPath
 
 https://github.com/json-path/JsonPath
+
+## Spring Data JPA
+
+**Java Persistence API (JPA)**: It is a Java specification that gives some functionality and standard to ORM tools.
+
+**Hibernate**: A Java ORM framework that simplifies the interaction with the database. An implementation of the JPA specification.
+
+### Data Transfer Objects (DTOs)
+
+POJOs with NO behavior
+
+DTOs only used for transferring data between producers and consumers
+
+![dto-entity](docs/dtos-and-entities.png "HTTP requests")
+
+### Why not use entities as DTOs?
+
+In a more complex application it is important to separate the DB data from the API response data
+
+Entities represent the tables in the database, we usually don't want to return every column from a table to the client
+
+Consumers have different needs than the needs of persistence
+
+### Type Conversions
+
+Type Conversions are often done within methods but it is **best practice** to use dedicated converter components
+
+Spring Framework provides a Converter interface with generics, can be used with our dedicated converter component
+
+[MapStruct](https://mapstruct.org/documentation/reference-guide/) is a code generator which automates generation of type converters, kinda like Lombok
