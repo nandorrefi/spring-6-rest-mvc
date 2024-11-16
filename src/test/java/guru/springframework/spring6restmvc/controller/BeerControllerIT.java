@@ -39,11 +39,14 @@ class BeerControllerIT {
     @Rollback
     @Transactional
     void patchBeerById() {
-        BeerDTO beer = beerMapper.beerToBeerDto(beerRepository.findAll().getFirst());
+        Beer beer = beerRepository.findAll().getFirst();
+        BeerDTO beerDto = beerMapper.beerToBeerDto(beer);
+        beerDto.setId(null);
+        beerDto.setVersion(null);
         String beerName = "UPDATED";
-        beer.setBeerName(beerName);
+        beerDto.setBeerName(beerName);
 
-        ResponseEntity responseEntity = beerController.patchBeerById(beer.getId(), beer);
+        ResponseEntity responseEntity = beerController.patchBeerById(beer.getId(), beerDto);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(204));
 
         Beer updatedBeer = beerRepository.findById(beer.getId()).get();
