@@ -27,8 +27,8 @@ public class BeerController {
     public static final String BEER_PATH_ID = BEER_PATH + "/{beerId}";
 
     @PatchMapping(BEER_PATH_ID)   // rarely used, also the implementation is pretty verbose especially if you have many properties in the DTO
-    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDTO beer) {
-        beerService.patchBeerById(beerId, beer);
+    public ResponseEntity patchBeerById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDTO beer) {
+        beerService.patchBeerById(beerId, beer).orElseThrow(NotFoundException::new);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
