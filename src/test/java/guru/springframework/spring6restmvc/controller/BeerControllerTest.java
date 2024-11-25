@@ -25,6 +25,7 @@ import static guru.springframework.spring6restmvc.controller.BeerController.BEER
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -59,6 +60,26 @@ class BeerControllerTest {
     }
 
     @Test
+    void testUpdateBeerEmptyUpc() throws Exception {
+
+        BeerDTO beerDTO = BeerDTO.builder().build();
+        beerDTO.setUpc("");
+
+        UUID beerId = beerServiceImpl.listBeers().getFirst().getId();
+        given(beerService.updateBeerById(eq(beerId), any(BeerDTO.class))).willReturn(Optional.of(beerServiceImpl.listBeers().getFirst()));
+
+        MvcResult mvcResult = mockMvc.perform(put(BEER_PATH + "/" + beerId)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(beerDTO)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.length()", is(5)))
+                .andReturn();
+
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
     void testCreateBeerNullBeerName() throws Exception {
         BeerDTO beerDTO = BeerDTO.builder().build();
 
@@ -69,7 +90,7 @@ class BeerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(beerDTO)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.length()", is(2)))
+                .andExpect(jsonPath("$.length()", is(6)))
                 .andReturn();
 
         System.out.println(mvcResult.getResponse().getContentAsString());

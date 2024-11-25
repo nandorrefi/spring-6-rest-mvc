@@ -16,16 +16,27 @@ import java.util.UUID;
 @Builder
 public class BeerDTO {
     private UUID id;
+
     private Integer version;
 
     // this is not enough for validation, we need to call for validation with @Validated where we want to apply this validation
     @NotBlank   // should not be whitespace characters or empty string
     @NotNull    // should not be null
     private String beerName;
+
+    @NotNull
     private BeerStyle beerStyle;
+
+    @NotBlank
+    @NotNull
     private String upc;
+
     private Integer quantityOnHand;
+
+    @NotNull
     private BigDecimal price;
+
     private LocalDateTime createdDate;
+
     private LocalDateTime updateDate;
 }
