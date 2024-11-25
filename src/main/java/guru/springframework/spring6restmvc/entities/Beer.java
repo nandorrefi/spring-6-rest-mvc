@@ -4,6 +4,7 @@ import guru.springframework.spring6restmvc.model.BeerStyle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,7 +29,9 @@ public class Beer {
     private Integer version;
 
     @NotBlank
-    @NotNull    // essentially, these validations will occur during hibernate actions, like writing to the DB, no need for explicit @Validated annotation
+    @NotNull    // essentially, these bean validations will occur during hibernate actions, like writing to the DB, no need for explicit @Validated annotation
+    @Size(max = 50)         // jakarta validates this field well before sending it to database, it is best practice to add this
+    @Column(length = 50)    // hibernate maps a DB column that is 50 chars long, executing an update that exceeds this length results in an sql error
     private String beerName;
 
     @NotNull
@@ -36,6 +39,7 @@ public class Beer {
 
     @NotBlank
     @NotNull
+    @Size(max = 255)
     private String upc;
     private Integer quantityOnHand;
 
