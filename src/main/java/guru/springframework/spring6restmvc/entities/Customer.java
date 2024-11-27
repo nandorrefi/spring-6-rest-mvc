@@ -17,7 +17,7 @@ public class Customer {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false) // when hibernate generates the table for the in memory H2 database
+    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false) // when hibernate generates the table for the in memory H2 database
                                                                                             // it will use these properties
     private UUID id;
     @Version    // prevents dirty data
