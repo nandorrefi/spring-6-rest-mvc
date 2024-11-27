@@ -34,3 +34,5 @@ build/
 
 ### Configs ###
 application-mariadb.properties
+drop-and-create.sql
+create.sql
