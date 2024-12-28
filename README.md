@@ -47,3 +47,15 @@ Type Conversions are often done within methods but it is **best practice** to us
 Spring Framework provides a Converter interface with generics, can be used with our dedicated converter component
 
 [MapStruct](https://mapstruct.org/documentation/reference-guide/) is a code generator which automates generation of type converters, kinda like Lombok
+
+## Flyway
+
+### SQL flavours
+
+If flyway is having issues with understanding your SQL script because it contains database specific keywords, 
+then you can use "vendor" in the location of the file: 
+https://docs.spring.io/spring-boot/docs/3.0.0-M5/reference/htmlsingle/#howto.data-initialization.migration-tool.flyway
+
+You can even overwrite FlywayProperties to tweak settings if needed.
+
+In general the default autoconfigured flyway should work for most cases.
