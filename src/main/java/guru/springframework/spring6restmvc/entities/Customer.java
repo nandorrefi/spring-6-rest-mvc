@@ -25,6 +25,8 @@ public class Customer {
                 // then throws an exception that the data has been changed by another process and your process has stale data
     private Integer version;
     private String name;
+    @Column(length = 255)
+    private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
 }
