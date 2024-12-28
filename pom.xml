@@ -45,6 +45,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
+
         <!-- By adding the dependecy the application won't connect to the mariaDB because it is not specified in the configuration.
         In this case Spring defaults to h2 if it has that dependency -->
         <dependency>
