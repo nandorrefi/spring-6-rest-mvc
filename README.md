@@ -59,3 +59,11 @@ https://docs.spring.io/spring-boot/docs/3.0.0-M5/reference/htmlsingle/#howto.dat
 You can even overwrite FlywayProperties to tweak settings if needed.
 
 In general the default autoconfigured flyway should work for most cases.
+
+## Spring Boot Test Containers
+
+Puts your Spring Boot application into a docker container. 
+
+Test Containers are for integration testing with databases, message brokers, auth servers, etc.
+
+Spring Boot support allows for easy detection of Test Containers and configuration for running the integration tests.
