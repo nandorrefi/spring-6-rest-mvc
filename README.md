@@ -69,3 +69,15 @@ Test Containers are for integration testing with databases, message brokers, aut
 Spring Boot support allows for easy detection of Test Containers and configuration for running the integration tests.
 
 Documentation: https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
+
+### Testing Optimization
+
+In the maven failsafe plugin we can separate the unit tests from the integration tests
+
+If we use \*IT or IT\* or \*ITCase naming in our test file, then we can set it up to run these tests during the "verify" lifecycle in maven.
+
+During the "test" lifecycle we can still trigger our faster unit tests for development.
+
+Generally unit tests should be run frequently, integration tests should be run more rarely.
+
+Documentation: https://maven.apache.org/surefire/maven-failsafe-plugin/integration-test-mojo.html

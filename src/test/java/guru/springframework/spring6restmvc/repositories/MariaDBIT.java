@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 @SpringBootTest
 @ActiveProfiles("mariadb")
-public class MariaDBTest {
+public class MariaDBIT {
 
     @Container
     @ServiceConnection  // This annotation will automatically configure the dynamic properties for our test container
