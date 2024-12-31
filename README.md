@@ -67,3 +67,5 @@ Puts your Spring Boot application into a docker container.
 Test Containers are for integration testing with databases, message brokers, auth servers, etc.
 
 Spring Boot support allows for easy detection of Test Containers and configuration for running the integration tests.
+
+Documentation: https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
