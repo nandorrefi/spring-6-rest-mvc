@@ -81,3 +81,16 @@ During the "test" lifecycle we can still trigger our faster unit tests for devel
 Generally unit tests should be run frequently, integration tests should be run more rarely.
 
 Documentation: https://maven.apache.org/surefire/maven-failsafe-plugin/integration-test-mojo.html
+
+### Spring Boot Docker Compose
+
+Using a root compose.yaml file we can run the services in a docker container that your application depends on.
+
+To use docker compose, specify the following in the application.properties config file:
+> spring.docker.compose.enabled=true
+
+With this setting, on startup the application runs the compose file which will create the specified Docker containers.
+
+This setting can also override connection settings specified in the application.properties file. For example, if we specify a database in the compose file, then the JDBC username, password and URL will be overwritten to use the Docker container database instance.
+
+By using Docker your application can become easily portable to multiple platforms and also set up true integration testing in a production-like environment.
