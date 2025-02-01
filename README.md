@@ -94,3 +94,9 @@ With this setting, on startup the application runs the compose file which will c
 This setting can also override connection settings specified in the application.properties file. For example, if we specify a database in the compose file, then the JDBC username, password and URL will be overwritten to use the Docker container database instance.
 
 By using Docker your application can become easily portable to multiple platforms and also set up true integration testing in a production-like environment.
+
+## CS File Upload
+
+Useful lib for this is **opencsv**: https://opencsv.sourceforge.net/
+
+
