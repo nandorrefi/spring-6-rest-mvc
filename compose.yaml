@@ -4,7 +4,7 @@ services:
     environment:
       - 'MARIADB_DATABASE=mydatabase'
       - 'MARIADB_USER=myuser'
-      - 'MARIADB_PASSWORD=really$secret'
-      - 'MARIADB_ROOT_PASSWORD=very$really$secret'
+      - 'MARIADB_PASSWORD=reallysecret'
+      - 'MARIADB_ROOT_PASSWORD=veryreallysecret'
     ports:
-      - '3306'
+      - '3306:3306'
