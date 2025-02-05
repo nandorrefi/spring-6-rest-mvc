@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -29,4 +30,7 @@ public class Customer {
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<BeerOrder> beerOrders;
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -52,6 +55,11 @@ public class BeerOrder {
     }
 
     private String customerRef;
-    
+
+    @ManyToOne
+    private Customer customer;
+
+    @OneToMany(mappedBy = "beerOrder")
+    private Set<BeerOrderLine> beerOrderLines;
 
 }
