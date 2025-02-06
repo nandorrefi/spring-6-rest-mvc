@@ -37,8 +37,12 @@ class BeerOrderRepositoryTest {
                 .customer(testCustomer)
                 .build();
 
-        BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder); // save object and persist to the database then return object from database
+        //BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder); // save object and persist to the database then return object from database
         // with flushing (persisting to database) JPA can retrieve the relationship between objects, but constant flushing can lead to performance degradation
+
+        BeerOrder savedBeerOrder = beerOrderRepository.save(beerOrder); // With lazy loading the relationships of this object won't be resolved immediately
+        // so currently we won't be able to access savedBeerOrder.customer
+        // if we want to init the relations without flushing, then we need to set up our own helper methods to build the relationship ourselves (see setCustomer method in BeerOrder)
 
         System.out.println(savedBeerOrder.getCustomerRef());
     }
