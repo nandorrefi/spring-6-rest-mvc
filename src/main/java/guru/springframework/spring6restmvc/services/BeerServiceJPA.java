@@ -95,14 +95,23 @@ public class BeerServiceJPA implements BeerService {
 
     @Override
     public Optional<BeerDTO> updateBeerById(UUID beerId, BeerDTO beer) {
+        
+        // this return will fail the "testUpdateBeerBadVersion" test because the beerDtoToBeer function
+        // creates a detached Beer object that works outside of a transactional context, when hibernate tries to save this object,
+        // it finds that the version is different on the optimistic locking value so it throws an ObjectOptimisticLockingFailureException.
+
+        // return Optional.of(beerMapper.beerToBeerDto(beerRepository.save(beerMapper.beerDtoToBeer(beer))));
+
         AtomicReference<Optional<BeerDTO>> atomicReference = new AtomicReference<>();
 
-        beerRepository.findById(beerId).ifPresentOrElse(foundBeer -> {
+        beerRepository.findById(beerId).ifPresentOrElse(foundBeer -> {  // "testUpdateBeerBadVersion" test will not fail due to optimistic locking
+            // because findById creates an implicit transaction with an attached beerDTO object and updates this object in the same transaction.
             foundBeer.setBeerName(beer.getBeerName());
             foundBeer.setBeerStyle(beer.getBeerStyle());
             foundBeer.setUpc(beer.getUpc());
             foundBeer.setPrice(beer.getPrice());
             foundBeer.setQuantityOnHand(beer.getQuantityOnHand());
+            foundBeer.setVersion(beer.getVersion());
             atomicReference.set(
                     Optional.of(
                             beerMapper.beerToBeerDto(beerRepository.save(foundBeer))
