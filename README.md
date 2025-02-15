@@ -112,3 +112,6 @@ Spring Security will also configure basic auth on all endpoints by default.
 Because it is a free text we should only use HTTPS protocol when using it. 
 Simple, but there are more secure solutions that should be used rather than basic auth.
 
+Spring Security provides protection against Cross Site Request Forgery (CSRF): https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html
+
+CSRF protection is only needed for web page endpoints, if we are using a REST API without cookies, then we do not need CSRF protection.
