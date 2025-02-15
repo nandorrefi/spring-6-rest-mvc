@@ -99,4 +99,16 @@ By using Docker your application can become easily portable to multiple platform
 
 Useful lib for this is **opencsv**: https://opencsv.sourceforge.net/
 
+## Spring Security
+
+Spring Security provides authentication, authorization and protection against common attacks.
+
+After pulling in the dependency, Spring Security configures a user named "user" by default. 
+The password for this user can be seen in the logs after running the application.
+
+Spring Security will also configure basic auth on all endpoints by default. 
+
+**Basic Authentication:** A base64 encoded free text username:password pair is sent in the header of the request. 
+Because it is a free text we should only use HTTPS protocol when using it. 
+Simple, but there are more secure solutions that should be used rather than basic auth.
 
