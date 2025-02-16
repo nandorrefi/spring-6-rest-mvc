@@ -5,6 +5,8 @@
 2. In IntelliJ community edition set make sure to check the checkbox in Settings -> Build, Execution, Deployment -> Compiler -> Build project automatically
 3. Now if you run the spring application, modify a file and recompile/rebuild that file or the entire project then the devtools will automatically rerun the Spring application
 
+**Authorization Server** project needed for **OAuth2.0 Client Credentials**: https://github.com/nandorrefi/spring-6-auth-server
+
 ### Notes
 
 Dev tools provides useful features for development. For example it attaches the stack trace to failed responses.

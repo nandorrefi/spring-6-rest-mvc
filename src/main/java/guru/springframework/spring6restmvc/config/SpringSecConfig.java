@@ -11,15 +11,13 @@ public class SpringSecConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests()    // we need to configure authentication in order too because we are overwriting the default behavior
-                        .anyRequest().authenticated()
-                        .and().httpBasic(Customizer.withDefaults())
-                .csrf(httpSecurityCsrfConfigurer -> {
-                    httpSecurityCsrfConfigurer.ignoringRequestMatchers("/api/**");
+        httpSecurity.authorizeHttpRequests(authorize -> {
+                    authorize.anyRequest().authenticated();
+                })    // we need to configure authentication in order too because we are overwriting the default behavior
+                .oauth2ResourceServer(httpSecurityOAuth2ResourceServerConfigurer -> {
+                    httpSecurityOAuth2ResourceServerConfigurer.jwt(Customizer.withDefaults());
                 });
-                // csrf is not needed so we disable csrf protection to be able to use unsafe http methods
-                // if we did have a web application and have web pages then we should enable csrf,
-                // but since we are using pure rest API and we are not using cookies, we don't need csrf
+
         return httpSecurity.build();
     }
 }
